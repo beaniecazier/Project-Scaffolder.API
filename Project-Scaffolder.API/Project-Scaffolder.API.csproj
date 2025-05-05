@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Project_Scaffolder.API</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+      <Content Include="..\.gitignore">
+        <Link>.gitignore</Link>
+      </Content>
+      <Content Include="..\.gitlab-ci.yml">
+        <Link>.gitlab-ci.yml</Link>
+      </Content>
+      <Content Include="..\CHANGELOG.txt">
+        <Link>CHANGELOG.txt</Link>
+      </Content>
+      <Content Include="..\CONTRIBUTING.md">
+        <Link>CONTRIBUTING.md</Link>
+      </Content>
+      <Content Include="..\LICENSE.txt">
+        <Link>LICENSE.txt</Link>
+      </Content>
+      <Content Include="..\README.md">
+        <Link>README.md</Link>
+      </Content>
+      <Content Include="..\ReleaseNotes.md">
+        <Link>ReleaseNotes.md</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>

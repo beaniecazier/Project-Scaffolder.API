@@ -1,0 +1,36 @@
+#image: docker:latest
+#
+#variables:
+#  IMAGE_NAME: registry.gitlab.com/${CI_PROJECT_PATH}/${CI_PROJECT_NAME}
+#
+#stages:
+#  - deploy
+#
+#before_script:
+#  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#
+#build-and-push:
+#  stage: deploy
+#  services:
+#    - docker:dind  # Required to run Docker inside GitLab CI
+#  script:
+#    - echo "Bui;ing Docker Image..."
+#    - |
+#      docker build -f ./API/Dockerfile \
+#        --build-arg PULL_ACCESS_TOKEN=$NUGET_AUTH_TOKEN \
+#        --build-arg PULL_ACCESS_USER=$NUGET_PULL_USER \
+#        -t $IMAGE_NAME:temp \
+#        .
+#    - |
+#      if [[$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH]]; then
+#        echo "Image built on default branch, tagging as latest
+#        docker tag $IMAGE_NAME:temp $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+#        docker push $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+#        docker tag $IMAGE_NAME:$CI_COMMIT_SHORT_SHA $IMAGE_NAME:latest
+#        docker push $IMAGE_NAME:latest
+#      else
+#        echo "Not on default branch, tagging image a prerelease
+#        docker tag $IMAGE_NAME:temp $IMAGE_NAME:alpha-$CI_COMMIT_SHORT_SHA
+#        docker push $IMAGE_NAME:alpha-$CI_COMMIT_SHORT_SHA
+#      fi
+#  environment: production
