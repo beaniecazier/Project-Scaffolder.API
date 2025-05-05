@@ -1,3 +1,6 @@
+using Project_Scaffolder.API.Extensions.Application;
+using Serilog;
+
 namespace Project_Scaffolder.API;
 
 public class Program
@@ -13,7 +16,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        var app = builder.Build();
+        var app = builder.AddApplicationServicesAndConfigurations(args);
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -25,6 +28,8 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
+        
+        Log.Information("Starting Api Host");
 
         app.Run();
     }
